@@ -1,0 +1,9 @@
+
+def find_path(src, dest, mesh):
+    
+    temppath = ((10, 10), (20, 20))
+    temppath += ((30, 30), (40, 40))
+    tempvisited = (10, 10, 20, 20)
+    tempvisited += (30, 30, 40, 40)
+    return (temppath, tempvisited)
+
