@@ -1,12 +1,37 @@
-
+from heapq import heappush, heappop
 def find_path(src, dest, mesh):
     print mesh
+    v = src
+    q = []
+    visited = []
+    d = {}
+    p = {}
+    d[src] = True
+    heappush(q,(d[src],src))
+    visited.append(src)
+    while q:
+        dV, v = heappop(q)
+        if v is dest:
+            break
+        neighbors = mesh['adj'].get(v,[])
+        for w in neighbors:
+            if w is dest:
 
-    temppath = []
-    tempvisited = []
-    temppath.append(((10, 10), (20, 20)))
-    temppath.append(((30, 30), (40, 40)))
-    tempvisited.append((10, 10, 20, 20))
-    tempvisited.append((30, 30, 40, 40))
-    return (temppath, tempvisited)
+             if d[w] is not True:
+                visited.append(w)
+                p[w] = v
+                d[w] = True
+                heappush(q, (d[w],w))
+    if v is dest:
+        path = []
+        node = dest
+        while node in p:
+            path.append(node )
+            node = p[node]
+        path.append(src)
+        path.reverse()
+        return (path, visited)
+    else:
+        return []
+
 
